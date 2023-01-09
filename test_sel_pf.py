@@ -25,15 +25,16 @@ def testing():
 def test_show_my_pets():
     # Вводим email
     pytest.driver.find_element(By.ID, 'email').send_keys('lelya10.92@mail.ru')
-    time.sleep(2)
-    # Вводим пароль
+    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "email")))
+    # Вводим пароьл
     pytest.driver.find_element(By.ID, 'pass').send_keys('2210la')
-    time.sleep(2)
+    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "pass")))
     # Нажимаем на кнопку входа в аккаунт
     pytest.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
-    time.sleep(3)
+    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "navbarNav")))
     # Нажимаем на кнопку "Мои питомцы"
     pytest.driver.find_element(By.CSS_SELECTOR, 'div#navbarNav > ul > li > a').click()
+    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "all_my_pets")))
 
     # 1. Написать тест, который проверяет, что присутствуют все питомцы
 
@@ -74,7 +75,3 @@ def test_show_my_pets():
         assert names[i].text != names[i-1].text
 
 # 5. В списке нет повторяющихся питомцев.
-
-
-
-
