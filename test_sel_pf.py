@@ -30,8 +30,8 @@ def test_show_my_pets():
     pytest.driver.find_element(By.ID, 'pass').send_keys('2210la')
     WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "pass")))
     # Нажимаем на кнопку входа в аккаунт
+    WebDriverWait(pytest.driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[type="submit"]')))
     pytest.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
-    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "navbarNav")))
     # Нажимаем на кнопку "Мои питомцы"
     pytest.driver.find_element(By.CSS_SELECTOR, 'div#navbarNav > ul > li > a').click()
     WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "all_my_pets")))
@@ -75,3 +75,7 @@ def test_show_my_pets():
         assert names[i].text != names[i-1].text
 
 # 5. В списке нет повторяющихся питомцев.
+
+
+
+
